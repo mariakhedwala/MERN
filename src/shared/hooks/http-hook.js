@@ -27,6 +27,7 @@ export const useHttpClient = () => {
         ); //clear the abort controller that belong the requests that just completed
 
         if (!response.ok) {
+          setIsLoading(false);
           throw new Error(responseData.message);
         }
 
@@ -43,6 +44,7 @@ export const useHttpClient = () => {
     []
   );
   const clearError = () => {
+    setIsLoading(false);
     setError(null);
   };
 

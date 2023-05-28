@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import ErrorModal from "../../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
+import Card from "../../shared/components/UIElements/Card";
+import Button from "../../shared/components/FormElements/Button";
 
 const UserPlaces = () => {
   const [loadedPlaces, setLoadedPlaces] = useState();
@@ -36,6 +38,14 @@ const UserPlaces = () => {
       {isLoading && (
         <div className="center">
           <LoadingSpinner />
+        </div>
+      )}
+      {!isLoading && !loadedPlaces && (
+        <div className="place-list center">
+          <Card>
+            <h2>No places found</h2>
+            <Button to="/places/new">Share place</Button>
+          </Card>
         </div>
       )}
       {!isLoading && loadedPlaces && (
